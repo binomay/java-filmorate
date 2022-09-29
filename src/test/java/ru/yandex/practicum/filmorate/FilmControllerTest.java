@@ -7,7 +7,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
 
@@ -21,11 +20,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class FilmControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
-    //@Autowired
-    //private PersonRepository repository;
     @Autowired
     private MockMvc mockMvc;
-    private  final LocalDate minReleaseDate = LocalDate.of(1895,12,28);
+    private final LocalDate minReleaseDate = LocalDate.of(1895, 12, 28);
 
     @Test
     public void shoulFilmNotCreateWithoutName() throws Exception {
@@ -76,7 +73,7 @@ public class FilmControllerTest {
     @Test
     public void shoulFilmNotCreateWithWrongDescription() throws Exception {
         StringBuilder longDescription = new StringBuilder();
-        for (int i = 0; i < 300; i++){
+        for (int i = 0; i < 300; i++) {
             longDescription = longDescription.append("a");
         }
         Film film = Film.builder()
@@ -106,6 +103,7 @@ public class FilmControllerTest {
                                 .content(objectMapper.writeValueAsString(film))
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
-                .andExpect(x -> x.getResolvedException().getClass().equals(ValidationException.class));
+                .andExpect(x -> x.getResolvedException().getClass().equals(ValidationException.class))
+                .andExpect(x -> x.getResolvedException().getMessage().equals("Дата релиза не может быть ранее дня рождения кино (28.12.1895)"));
     }
 }

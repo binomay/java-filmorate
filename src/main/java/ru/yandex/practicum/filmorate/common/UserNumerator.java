@@ -1,14 +1,10 @@
 package ru.yandex.practicum.filmorate.common;
 
-public class Numerator {
+public class UserNumerator {
     private static int userId;
-    private static int filmId;
 
     public static int getUserId(){
         return ++ userId;
     }
 
-    public static int getFilmId(){
-        return ++ filmId;
-    }
 }

@@ -8,6 +8,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
 
 import java.time.LocalDate;
@@ -21,8 +22,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class UserControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
-    //@Autowired
-    //private PersonRepository repository;
     @Autowired
     private MockMvc mockMvc;
 
@@ -103,6 +102,8 @@ class UserControllerTest {
                                 .content(objectMapper.writeValueAsString(user))
                                 .contentType(MediaType.APPLICATION_JSON)
                 )
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().is4xxClientError())
+                .andExpect(x -> x.getResolvedException().getClass().equals(ValidationException.class))
+                .andExpect(x -> x.getResolvedException().getMessage().equals("Логин не может содержать пробелы!"));
     }
 }
