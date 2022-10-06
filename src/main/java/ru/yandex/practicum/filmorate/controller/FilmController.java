@@ -1,62 +1,60 @@
 package ru.yandex.practicum.filmorate.controller;
 
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ru.yandex.practicum.filmorate.common.FilmNumerator;
-import ru.yandex.practicum.filmorate.common.UserNumerator;
-import ru.yandex.practicum.filmorate.exception.ResourceNotFoundException;
-import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
+import ru.yandex.practicum.filmorate.service.film.FilmService;
 
 import javax.validation.Valid;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/films")
 public class FilmController {
-    private HashMap<Integer, Film> filmsMap = new HashMap<>();
-    private final LocalDate minReleaseDate = LocalDate.of(1895, 12, 28);
+    private final FilmService service;
+
+    private final String DEFAULT_FILM_COUNT = "10";
+
+    @Autowired
+    public FilmController(FilmService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public List<Film> getFilmsList() {
-        log.info("Количество фильмов: " + filmsMap.size());
-        return new ArrayList<>(filmsMap.values());
+        return service.getFilmsList();
+    }
+
+    @GetMapping("/{id}")
+    public Film getFilmById(@PathVariable int id) {
+        return service.getFilmById(id);
     }
 
     @PostMapping
     public Film createFilm(@Valid @RequestBody Film film) {
-        film.setId(FilmNumerator.geFilmId());
-        createOrUpdateFilm(film);
-        log.info("Создан новый фильм: " + film.toString());
-        return film;
+        return service.createFilm(film);
     }
 
     @PutMapping
-    Film updateFilm(@Valid @RequestBody Film film) {
-        if (!filmsMap.containsKey(film.getId())) {
-            String msg = "Не могу найти фильм с Id =" + film.getId();
-            log.warn(msg);
-            throw new ResourceNotFoundException(msg);
-        }
-        createOrUpdateFilm(film);
-        log.info("Фильм Id = " + film.getId() + " изменен.");
-        return film;
+    public Film updateFilm(@Valid @RequestBody Film film) {
+        return service.updateFilm(film);
     }
 
-    private void createOrUpdateFilm(Film film) {
-        checkFilm(film);
-        filmsMap.put(film.getId(), film);
+    @PutMapping("/{id}/like/{userId}")
+    public void setLike(@PathVariable int id, @PathVariable int userId) {
+        service.addLike(id, userId);
     }
 
-    private void checkFilm(Film film) {
-        if (film.getReleaseDate().isBefore(minReleaseDate)) {
-            String msg = "Дата релиза не может быть ранее дня рождения кино (28.12.1895)";
-            log.warn(msg);
-            throw new ValidationException(msg);
-        }
+    @DeleteMapping("{id}/like/{userId}")
+    public void deleteLike(@PathVariable int id, @PathVariable int userId) {
+        service.deleteLike(id, userId);
+    }
+
+    /*возвращает список из первых count фильмов по количеству лайков.
+    Если значение параметра count не задано, верните первые 10.
+     */
+    @GetMapping("/popular")
+    public List<Film> getTopFilmsByLikes(@RequestParam(defaultValue = DEFAULT_FILM_COUNT) int count) {
+        return service.getTopFilmsByLikes(count);
     }
 }
