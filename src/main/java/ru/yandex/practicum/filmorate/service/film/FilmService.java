@@ -12,17 +12,11 @@ import ru.yandex.practicum.filmorate.storage.film.FilmStorage;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j
 @Service
 public class FilmService {
-    //добавление лайка
-    // удаление лайка,
-    // вывод 10 наиболее популярных фильмов по количеству лайков.
-    // Каждый пользователь может поставить лайк фильму только один раз.
-
     private final FilmStorage storage;
     private final UserService userService;
     private final LocalDate minReleaseDate = LocalDate.of(1895, 12, 28);
@@ -48,7 +42,6 @@ public class FilmService {
         checkFilmExists(film);
         checkReleaseDate(film);
         Film oldFilm = getFilmById(film.getId());
-        storage.deleteFromPriorityList(oldFilm);
         film = storage.updateFilm(film);
         log.info("Фильм Id = " + film.getId() + " изменен.");
         return film;
@@ -57,7 +50,6 @@ public class FilmService {
     public void addLike(int filmId, int userId) {
         User user = userService.getUserById(userId);
         Film film = getFilmById(filmId);
-        storage.deleteFromPriorityList(film);
         film.setLike(user);
         storage.updateFilm(film);
     }
@@ -65,19 +57,17 @@ public class FilmService {
     public void deleteLike(int filmId, int userId) {
         User user = userService.getUserById(userId);
         Film film = getFilmById(filmId);
-        storage.deleteFromPriorityList(film);
         film.deleteLike(user);
         storage.updateFilm(film);
     }
 
     public Film getFilmById(int filmId) {
-        Optional<Film> optFilm = storage.getFilmById(filmId);
-        if (!optFilm.isPresent()) {
-            String msg = "Не могу найти фильм с Id =" + filmId;
-            log.warn(msg);
-            throw new ResourceNotFoundException(msg);
-        }
-        return optFilm.get();
+        return storage.getFilmById(filmId)
+                .orElseThrow(() -> {
+                    String msg = "Не могу найти фильм с Id =" + filmId;
+                    log.warn(msg);
+                    throw new ResourceNotFoundException(msg);
+                });
     }
 
     public List<Film> getTopFilmsByLikes(int countFilms) {

@@ -23,7 +23,6 @@ public class UserController {
         return service.getUsers();
     }
 
-    //TODO: добавил
     @GetMapping("/{id}")
     public User getUserById(@PathVariable int id) {
         return service.getUserById(id);
@@ -40,13 +39,11 @@ public class UserController {
     }
 
     @GetMapping("/{id}/friends")
-    @ResponseBody
     public List<User> getFriendList(@PathVariable int id) {
         return service.getFriendsList(id);
     }
 
     @GetMapping("/{id}/friends/common/{otherId}")
-    @ResponseBody
     public List<User> getCommonFriends(@PathVariable int id, @PathVariable int otherId) {
         return service.getCommonFriends(id, otherId);
     }

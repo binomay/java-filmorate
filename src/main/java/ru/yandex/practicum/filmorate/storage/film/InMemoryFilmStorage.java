@@ -13,9 +13,6 @@ import java.util.*;
 public class InMemoryFilmStorage implements FilmStorage {
     private HashMap<Integer, Film> filmsMap = new HashMap<>();
 
-    //будем хранить отсортированные по количеству лаков фильмы
-    private TreeSet<Film> prioritizedFilmsByLikes = new TreeSet<>(new FilmComparatorByLikes());
-
     public Optional<Film> getFilmById(int filmId) {
         return Optional.ofNullable(filmsMap.get(filmId));
     }
@@ -40,14 +37,12 @@ public class InMemoryFilmStorage implements FilmStorage {
             film.setId(FilmNumerator.geFilmId());
         }
         filmsMap.put(film.getId(), film);
-        prioritizedFilmsByLikes.add(film);
     }
 
     public List<Film> getPrioritizedFilmList() {
-        return new ArrayList<Film>(prioritizedFilmsByLikes);
+        List<Film> listFilms = new ArrayList<Film>(filmsMap.values());
+        Collections.sort(listFilms, new FilmComparatorByLikes());
+        return listFilms;
     }
 
-    public void deleteFromPriorityList(Film film) {
-        prioritizedFilmsByLikes.remove(film);
-    }
 }

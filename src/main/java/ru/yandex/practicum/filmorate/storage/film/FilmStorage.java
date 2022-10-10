@@ -17,6 +17,5 @@ public interface FilmStorage {
 
     List<Film> getPrioritizedFilmList();
 
-    void deleteFromPriorityList(Film film);
 
 }

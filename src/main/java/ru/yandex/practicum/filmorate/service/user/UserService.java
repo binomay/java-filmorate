@@ -9,15 +9,12 @@ import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.storage.user.UserStorage;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Slf4j
 @Service
 public class UserService {
-    //добавление в друзья,
-    // удаление из друзей,
-    //вывод списка общих друзей
     private UserStorage storage;
 
     @Autowired
@@ -31,14 +28,12 @@ public class UserService {
     }
 
     public User getUserById(int userId) {
-        Optional<User> optUser = storage.getUserById(userId);
-        if (!optUser.isPresent()) {
-            String msg = "Не нашел пользователя с Id = " + userId;
-            log.warn(msg);
-            throw new ResourceNotFoundException(msg);
-        } else {
-            return optUser.get();
-        }
+        return storage.getUserById(userId)
+                .orElseThrow(() -> {
+                    String msg = "Не нашел пользователя с Id = " + userId;
+                    log.warn(msg);
+                    throw new ResourceNotFoundException(msg);
+                });
     }
 
     public User createUser(User user) {
@@ -51,9 +46,6 @@ public class UserService {
     public User updateUser(User user) {
         checkUserExists(user);
         checkUserAndOptionalUpdate(user);
-        //вытащить список френдов... он может потеряться при апдейте
-        //User oldUser = storage.getUserById().get();
-        //oldUser.getFriendsList()
         user = storage.updateUser(user);
         log.info("Пользователь Id = " + user.getId() + " изменен.");
         return user;
@@ -85,9 +77,9 @@ public class UserService {
     public List<User> getCommonFriends(int id, int otherId) {
         User user1 = getUserById(id);
         User user2 = getUserById(otherId);
-        List<User> list1 = getFriendsList(user1.getId());
-        List<User> list2 = getFriendsList(user2.getId());
-        return list1.stream().filter(u -> list2.contains(u)).collect(Collectors.toList());
+        Set<Integer> set1 = user1.getFriendsList();
+        Set<Integer> set2 = user2.getFriendsList();
+        return set1.stream().filter(u -> set2.contains(u)).map(u -> getUserById(u)).collect(Collectors.toList());
     }
 
     private void checkUserAndOptionalUpdate(User user) {
