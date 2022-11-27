@@ -2,12 +2,14 @@ package ru.yandex.practicum.filmorate.service.user;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.filmorate.exception.ResourceNotFoundException;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.storage.user.UserStorage;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -15,14 +17,14 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class UserService {
-    private UserStorage storage;
+
+    private final UserStorage storage;
 
     @Autowired
-    public UserService(UserStorage storage) {
+    public UserService(@Qualifier("dbUserStorage") UserStorage storage) {
         this.storage = storage;
     }
 
-    //в нем логики никакой нет, тупо проксируем
     public List<User> getUsers() {
         return storage.getUsers();
     }
@@ -55,23 +57,22 @@ public class UserService {
         User user = getUserById(userId);
         User friend = getUserById(friendId);
         user.addFriend(friend);
-        friend.addFriend(user);
-        storage.updateUser(user);
-        storage.updateUser(friend);
+        //начиная с 11 спринта связь стала односторонней
+        //friend.addFriend(user);
+        storage.addFriendToUser(user, friend);
+        //storage.updateUser(friend, user);
     }
 
     public void deleteFriend(int userId, int friendId) {
         User user = getUserById(userId);
         User friend = getUserById(friendId);
         user.deleteFriend(friend);
-        friend.deleteFriend(user);
-        storage.updateUser(user);
-        storage.updateUser(friend);
+        storage.deleteFriendFromUser(user, friend);
     }
 
     public List<User> getFriendsList(int userId) {
         User user = getUserById(userId);
-        return user.getFriendsList().stream().map(x -> getUserById(x)).collect(Collectors.toList());
+        return storage.getFriendsList(user);
     }
 
     public List<User> getCommonFriends(int id, int otherId) {
@@ -84,12 +85,21 @@ public class UserService {
 
     private void checkUserAndOptionalUpdate(User user) {
         checkLogin(user);
+        checkBirthDate(user);
         checkAndOptionalUpdateUserName(user);
     }
 
     private void checkLogin(User user) {
         if (user.getLogin().contains(" ")) {
             String msg = "Логин не может содержать пробелы!";
+            log.warn(msg);
+            throw new ValidationException(msg);
+        }
+    }
+
+    private void checkBirthDate(User user) {
+        if (user.getBirthday().isAfter(LocalDate.now())) {
+            String msg = "Дата рождения не может быть в будущем!!";
             log.warn(msg);
             throw new ValidationException(msg);
         }

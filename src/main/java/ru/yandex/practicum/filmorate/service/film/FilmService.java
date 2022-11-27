@@ -2,6 +2,7 @@ package ru.yandex.practicum.filmorate.service.film;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import ru.yandex.practicum.filmorate.exception.ResourceNotFoundException;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
@@ -22,7 +23,7 @@ public class FilmService {
     private final LocalDate minReleaseDate = LocalDate.of(1895, 12, 28);
 
     @Autowired
-    public FilmService(FilmStorage storage, UserService userService) {
+    public FilmService(@Qualifier("DBFilmStorage") FilmStorage storage, UserService userService) {
         this.storage = storage;
         this.userService = userService;
     }
@@ -50,15 +51,13 @@ public class FilmService {
     public void addLike(int filmId, int userId) {
         User user = userService.getUserById(userId);
         Film film = getFilmById(filmId);
-        film.setLike(user);
-        storage.updateFilm(film);
+        storage.addLikeToFilm(film, user);
     }
 
     public void deleteLike(int filmId, int userId) {
         User user = userService.getUserById(userId);
         Film film = getFilmById(filmId);
-        film.deleteLike(user);
-        storage.updateFilm(film);
+        storage.deleteLike(film, user);
     }
 
     public Film getFilmById(int filmId) {

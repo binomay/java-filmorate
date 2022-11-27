@@ -19,7 +19,6 @@ public class User {
     @NotBlank
     private String login;
     private String name;
-    @Past
     private LocalDate birthday;
 
     private final Set<Integer> friendsList = new HashSet<>();
