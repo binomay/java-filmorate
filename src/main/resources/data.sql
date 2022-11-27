@@ -2,6 +2,7 @@ set mode mysql;
 --ПОДЧИСТИМ, ИНАЧЕ ПОСТМАН НЕ ПРХОДИТ
 DELETE
 FROM FRIENDSHIP
+-- используем if in (select...), т.к. script почему-то отказывается выполнять delete без условия where....
 WHERE ID IN (SELECT ID FROM FRIENDSHIP);
 DELETE
 FROM FILMLIKES

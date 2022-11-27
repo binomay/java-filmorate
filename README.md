@@ -1,4 +1,8 @@
 # java-filmorate (add database)
 
-![диаграмма базы данных](/assets/images/schema.png)
-[DDL](/resources/schema.sql)
+# ** если диаграмма на отображается, то использовать ссылку: https://github.com/binomay/java-filmorate/blob/add-database/src/main/assets/images/schema.png
+
+![диаграмма базы данных](/src/main/assets/images/schema.png)
+
+
+[DDL](/src/main/resources/data.sql)
