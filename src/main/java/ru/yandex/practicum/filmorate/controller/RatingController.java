@@ -4,9 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.yandex.practicum.filmorate.model.Genre;
 import ru.yandex.practicum.filmorate.model.Rating;
-import ru.yandex.practicum.filmorate.service.genre.GenreService;
 import ru.yandex.practicum.filmorate.service.rating.RatingService;
 
 import java.sql.SQLException;
@@ -17,7 +15,6 @@ import java.util.List;
 public class RatingController {
     private final RatingService service;
 
-    //@Autowired
     public RatingController(RatingService service) {
         this.service = service;
     }

@@ -20,7 +20,6 @@ public class DBRatingStorage implements RatingStorage {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-
     @Override
     public Optional<Rating> getRatingById(int idRating) {
         SqlRowSet userRows = jdbcTemplate.queryForRowSet("SELECT * FROM RATING WHERE ID = ?", idRating);
@@ -37,7 +36,6 @@ public class DBRatingStorage implements RatingStorage {
             return Optional.empty();
         }
     }
-
 
     @Override
     public List<Rating> getAllRatings() {

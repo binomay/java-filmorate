@@ -57,10 +57,7 @@ public class UserService {
         User user = getUserById(userId);
         User friend = getUserById(friendId);
         user.addFriend(friend);
-        //начиная с 11 спринта связь стала односторонней
-        //friend.addFriend(user);
         storage.addFriendToUser(user, friend);
-        //storage.updateUser(friend, user);
     }
 
     public void deleteFriend(int userId, int friendId) {
@@ -76,11 +73,7 @@ public class UserService {
     }
 
     public List<User> getCommonFriends(int id, int otherId) {
-        User user1 = getUserById(id);
-        User user2 = getUserById(otherId);
-        Set<Integer> set1 = user1.getFriendsList();
-        Set<Integer> set2 = user2.getFriendsList();
-        return set1.stream().filter(u -> set2.contains(u)).map(u -> getUserById(u)).collect(Collectors.toList());
+        return storage.getCommonFriends(id, otherId);
     }
 
     private void checkUserAndOptionalUpdate(User user) {

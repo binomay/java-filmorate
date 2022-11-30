@@ -20,6 +20,6 @@ public interface FilmStorage {
 
     Optional<Film> getFilmById(int filmId);
 
-    List<Film> getPrioritizedFilmList();
+    List<Film> getPrioritizedFilmList(int maxCountFilms);
 
 }

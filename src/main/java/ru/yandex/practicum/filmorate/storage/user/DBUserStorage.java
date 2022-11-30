@@ -8,10 +8,7 @@ import org.springframework.stereotype.Component;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.numerators.UserNumerator;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Slf4j
 @Component
@@ -26,17 +23,39 @@ public class DBUserStorage implements UserStorage {
 
     @Override
     public List<User> getUsers() {
-        String sql = "SELECT * FROM USERS";
-        List<User> userList = jdbcTemplate.query(sql, (rs, rowNum) -> makeUser(rs));
-        for (User user : userList) {
-            addAllFriendsToUser(user);
-        }
-        return userList;
+        String sql = getSqlForUserList();
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
+        return commonGetUserList(rs);
+
+    }
+
+    public List<User> getCommonFriends(int id, int otherId) {
+        String sql = "SELECT U.ID USER_ID, U.EMAIL USER_EMAIL, U.LOGIN USER_LOGIN, " +
+                "U.NAME USER_NAME, U.BIRTHDATE USER_DATE, " +
+                "F.ID FRIEND_ID,  F.EMAIL FRIEND_EMAIL, F.LOGIN FRIEND_LOGIN, " +
+                "F.NAME FRIEND_NAME, F.BIRTHDATE FRIEND_DATE " +
+                "FROM FRIENDSHIP FS1 JOIN  FRIENDSHIP FS2 ON FS1.FRIEND = FS2.FRIEND AND FS1.ACCEPTED = TRUE AND FS2.ACCEPTED = TRUE " +
+                "JOIN USERS U ON U.ID = FS1.FRIEND " +
+                "LEFT JOIN FRIENDSHIP FS3 ON FS3.USER_ID = U.ID AND FS3.ACCEPTED = TRUE " +
+                "LEFT JOIN USERS F ON FS3.FRIEND = U.ID AND FS3.ACCEPTED = TRUE " +
+                "WHERE FS1.USER_ID = ? AND FS2.USER_ID = ? ";
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, id, otherId);
+        return commonGetUserList(rs);
     }
 
     @Override
     public Optional<User> getUserById(int userId) {
-        return commonGetUserById(userId, true);
+        String sql = getSqlForUserList() + "  WHERE U.ID = " + userId;
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(sql);
+        List<User> userList = commonGetUserList(rs);
+        if (userList.size() > 0) {
+            return Optional.of(userList.get(0));
+        } else {
+            log.info("User с идентификатором {} не найден.", userId);
+            return Optional.empty();
+        }
+
+
     }
 
     @Override
@@ -74,7 +93,7 @@ public class DBUserStorage implements UserStorage {
         jdbcTemplate.update(sql,
                 user.getId(),
                 friend.getId(),
-                false);
+                true);
     }
 
     @Override
@@ -88,50 +107,66 @@ public class DBUserStorage implements UserStorage {
 
     @Override
     public List<User> getFriendsList(User user) {
-        String sql = "SELECT * FROM FRIENDSHIP WHERE USER_ID = " + user.getId();
-        return jdbcTemplate.query(sql, (rs, rowNum) -> getFriend(rs));
+        String sql = "SELECT U.ID USER_ID, U.EMAIL USER_EMAIL, U.LOGIN USER_LOGIN,"
+                + " U.NAME USER_NAME, U.BIRTHDATE USER_DATE, "
+                + "F.ID FRIEND_ID, F.EMAIL FRIEND_EMAIL, F.LOGIN FRIEND_LOGIN,  "
+                + "F.NAME FRIEND_NAME, F.BIRTHDATE FRIEND_DATE "
+                + "FROM FRIENDSHIP FR JOIN USERS U ON FR.FRIEND = U.ID "
+                + "LEFT JOIN FRIENDSHIP FRR ON U.ID = FRR.USER_ID AND FRR.ACCEPTED = TRUE "
+                + "LEFT JOIN USERS F ON FRR.FRIEND = F.ID "
+                + "WHERE FR.USER_ID = ? AND FR.ACCEPTED = TRUE";
+        SqlRowSet rs = jdbcTemplate.queryForRowSet(sql, user.getId());
+        return commonGetUserList(rs);
     }
 
-    private User makeUser(ResultSet rs) throws SQLException {
+    private String getSqlForUserList() {
+        return "SELECT U.ID USER_ID, U.EMAIL USER_EMAIL, U.LOGIN USER_LOGIN, "
+                + "U.NAME  USER_NAME, U.BIRTHDATE USER_DATE, "
+                + "FR.ID FRIEND_ID, FR.EMAIL FRIEND_EMAIL, FR.LOGIN FRIEND_LOGIN, "
+                + "FR.NAME  FRIEND_NAME, FR.BIRTHDATE FRIEND_DATE "
+                + "FROM USERS U "
+                + "LEFT JOIN FRIENDSHIP FS ON U.ID = FS.USER_ID AND FS.ACCEPTED = TRUE "
+                + "LEFT JOIN USERS FR ON FS.FRIEND = FR.ID ";
+    }
+
+    private List<User> commonGetUserList(SqlRowSet rs) {
+        Map<Integer, User> usersMap = new HashMap<>();
+        while (rs.next()) {
+            int userId;
+            User currentUser;
+            userId = rs.getInt("USER_ID");
+            if (!usersMap.containsKey(userId)) {
+                currentUser = makeUser(rs);
+            } else {
+                currentUser = usersMap.get(userId);
+            }
+            if (rs.getInt("FRIEND_ID") != 0) {
+                User friend = makeFriend(rs);
+                friend.addFriend(friend);
+            }
+            usersMap.put(userId, currentUser);
+        }
+        return new ArrayList<>(usersMap.values());
+    }
+
+    private User makeUser(SqlRowSet rs) {
         User user = new User();
-        user.setId(rs.getInt("id"));
-        user.setEmail(rs.getString("email"));
-        user.setLogin(rs.getString("login"));
-        user.setName(rs.getString("name"));
-        user.setBirthday(rs.getDate("birthdate").toLocalDate());
+        user.setId(rs.getInt("USER_ID"));
+        user.setEmail(rs.getString("USER_EMAIL"));
+        user.setLogin(rs.getString("USER_LOGIN"));
+        user.setName(rs.getString("USER_NAME"));
+        user.setBirthday(rs.getDate("USER_DATE").toLocalDate());
         return user;
     }
 
-    private void addAllFriendsToUser(User user) {
-        List<User> friendList = getFriendsList(user);
-        for (User friend : friendList) {
-            user.addFriend(friend);
-        }
-    }
-
-    private User getFriend(ResultSet rs) throws SQLException {
-        int id = rs.getInt("friend");
-        return commonGetUserById(id, false).get();
-    }
-
-    private Optional<User> commonGetUserById(int userId, boolean needFriendList) {
-        SqlRowSet rs = jdbcTemplate.queryForRowSet("SELECT * FROM USERS WHERE ID = ?", userId);
-        if (rs.next()) {
-            User user = new User();
-            user.setId(rs.getInt("id"));
-            user.setEmail(rs.getString("email"));
-            user.setLogin(rs.getString("login"));
-            user.setName(rs.getString("name"));
-            user.setBirthday(rs.getDate("birthdate").toLocalDate());
-            if (needFriendList) {
-                addAllFriendsToUser(user);
-            }
-            log.info("Найден пользователь: {} {}", user.getId(), user.getName());
-            return Optional.of(user);
-        } else {
-            log.info("Пользователь с идентификатором {} не найден.", userId);
-            return Optional.empty();
-        }
+    private User makeFriend(SqlRowSet rs) {
+        User user = new User();
+        user.setId(rs.getInt("FRIEND_ID"));
+        user.setEmail(rs.getString("FRIEND_EMAIL"));
+        user.setLogin(rs.getString("FRIEND_LOGIN"));
+        user.setName(rs.getString("FRIEND_NAME"));
+        user.setBirthday(rs.getDate("FRIEND_DATE").toLocalDate());
+        return user;
     }
 
 }

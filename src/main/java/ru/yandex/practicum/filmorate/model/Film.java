@@ -1,14 +1,12 @@
 package ru.yandex.practicum.filmorate.model;
 
-import lombok.Builder;
-import org.springframework.boot.context.properties.bind.DefaultValue;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Null;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 
@@ -20,21 +18,21 @@ public class Film {
     @NotBlank
     @Size(max = 200)
     private String description;
-    //@NotNull
+    @NotNull
     private LocalDate releaseDate;
     @Min(0)
     private int duration;
-    private Set<Genre> genres = new HashSet<>();
+    private LinkedHashSet<Genre> genres = new LinkedHashSet<>();
     //рейтинг
-    private Rating  mpa; //Андрей, ты дятел! mpa один!!!!!
-
+    private Rating mpa;
     //пользовательские лайки
     private final Set<Integer> likes = new HashSet<>();
 
-    public void setGenre(Genre genre){
+    public void addGenre(Genre genre) {
         genres.add(genre);
     }
-    public void setLike(int user_id) {
+
+    public void addLike(int user_id) {
         likes.add(user_id);
     }
 

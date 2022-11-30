@@ -42,7 +42,6 @@ public class FilmService {
     public Film updateFilm(Film film) {
         checkFilmExists(film);
         checkReleaseDate(film);
-        Film oldFilm = getFilmById(film.getId());
         film = storage.updateFilm(film);
         log.info("Фильм Id = " + film.getId() + " изменен.");
         return film;
@@ -69,11 +68,11 @@ public class FilmService {
                 });
     }
 
-    public List<Film> getTopFilmsByLikes(int countFilms) {
-        if (countFilms <= 0) {
+    public List<Film> getTopFilmsByLikes(int maxCountFilms) {
+        if (maxCountFilms <= 0) {
             throw new ValidationException("Количетво лайков не может быть отрицательным!");
         }
-        return storage.getPrioritizedFilmList().stream().limit(countFilms).collect(Collectors.toList());
+        return storage.getPrioritizedFilmList(maxCountFilms);
     }
 
     private void checkReleaseDate(Film film) {

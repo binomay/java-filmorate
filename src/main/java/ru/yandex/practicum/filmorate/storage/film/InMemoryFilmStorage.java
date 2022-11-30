@@ -9,6 +9,7 @@ import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.numerators.FilmNumerator;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Component
@@ -41,7 +42,7 @@ public class InMemoryFilmStorage implements FilmStorage {
 
     @Override
     public void addLikeToFilm(Film film, User user) {
-        film.setLike(user.getId());
+        film.addLike(user.getId());
         updateFilm(film);
     }
 
@@ -58,10 +59,10 @@ public class InMemoryFilmStorage implements FilmStorage {
         filmsMap.put(film.getId(), film);
     }
 
-    public List<Film> getPrioritizedFilmList() {
+    public List<Film> getPrioritizedFilmList(int maxCountFilms) {
         List<Film> listFilms = new ArrayList<Film>(filmsMap.values());
         Collections.sort(listFilms, new FilmComparatorByLikes());
-        return listFilms;
+        return listFilms.stream().limit(maxCountFilms).collect(Collectors.toList());
     }
 
 }

@@ -138,7 +138,7 @@ class FilmoRateApplicationTests {
         filmStorage.addLikeToFilm(film2, user1);
         filmStorage.addLikeToFilm(film2, user2);
         filmStorage.addLikeToFilm(film1, user3);
-        List<Film> popularFilmList = filmStorage.getPrioritizedFilmList();
+        List<Film> popularFilmList = filmStorage.getPrioritizedFilmList(10);
 
         Assertions.assertTrue(popularFilmList.size() == 2, "Должно  быть 2 фильма");
         Assertions.assertEquals("Создан первый фильм", popularFilmList.get(0).getName(), "Первый должен быть фильм 1");
@@ -235,7 +235,7 @@ class FilmoRateApplicationTests {
         film.setReleaseDate(LocalDate.of(2022, 11, 24));
         film.setDuration(10);
         film.setMpa(mpaStorage.getRatingById(1).get());
-        film.setGenre(genreStorage.getGenreById(1).get());
+        film.addGenre(genreStorage.getGenreById(1).get());
         return filmStorage.createFilm(film);
     }
 
@@ -246,7 +246,7 @@ class FilmoRateApplicationTests {
         film.setReleaseDate(LocalDate.of(2022, 11, 24));
         film.setDuration(10);
         film.setMpa(mpaStorage.getRatingById(1).get());
-        film.setGenre(genreStorage.getGenreById(1).get());
+        film.addGenre(genreStorage.getGenreById(1).get());
         return filmStorage.createFilm(film);
     }
 

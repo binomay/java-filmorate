@@ -18,7 +18,8 @@ create table IF NOT EXISTS FILMS
     DESCRIPTION CHARACTER VARYING(200),
     RELEASEDATE DATE                   not null,
     DURATION    INTEGER                not null,
-    RATING      INTEGER references RATING (ID)
+    RATING      INTEGER references RATING (ID),
+    RATE        INTEGER DEFAULT 0
 );
 
 create table IF NOT EXISTS USERS
@@ -32,24 +33,24 @@ create table IF NOT EXISTS USERS
 
 create table IF NOT EXISTS FILMLIKES
 (
-    ID      INTEGER auto_increment primary key,
     FILM_ID INTEGER not null references FILMS (ID),
-    USER_ID INTEGER not null references USERS (ID)
+    USER_ID INTEGER not null references USERS (ID),
+    PRIMARY KEY (FILM_ID, USER_ID)
 );
 
 create table IF NOT EXISTS FRIENDSHIP
 (
-    ID       INTEGER auto_increment primary key,
     USER_ID  INTEGER references USERS (ID),
     FRIEND   INTEGER references USERS (ID),
-    ACCEPTED BOOLEAN default FALSE
+    ACCEPTED BOOLEAN default FALSE,
+    PRIMARY KEY (USER_ID, FRIEND)
 );
 
 create table IF NOT EXISTS FILMSGENRE
 (
-    ID       INT PRIMARY KEY AUTO_INCREMENT,
     FILM_ID  INT NOT NULL REFERENCES FILMS (ID),
-    GENRE_ID INT NOT NULL REFERENCES GENRE (ID)
+    GENRE_ID INT NOT NULL REFERENCES GENRE (ID),
+    PRIMARY KEY (FILM_ID, GENRE_ID)
 )
 
 

@@ -21,14 +21,11 @@ public class DBGenreStorage implements GenreStorage {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    //сначала попробуем руками разобрать
     @Override
     public Optional<Genre> getGenreById(int idGenre) {
         SqlRowSet genreRows = jdbcTemplate.queryForRowSet("SELECT * FROM GENRE WHERE ID = ?", idGenre);
         if (genreRows.next()) {
-            Genre genre = new Genre();
-            genre.setId(genreRows.getInt("id"));
-            genre.setName(genreRows.getString("name"));
+            Genre genre = new Genre(genreRows.getInt("id"), genreRows.getString("name"));
             log.info("Найден жанр: {} {}", genre.getId(), genre.getName());
             return Optional.of(genre);
         } else {
@@ -52,9 +49,6 @@ public class DBGenreStorage implements GenreStorage {
     }
 
     private Genre makeGenre(ResultSet rs) throws SQLException {
-        Genre genre = new Genre();
-        genre.setId(rs.getInt("id"));
-        genre.setName(rs.getString("name"));
-        return genre;
+        return new Genre(rs.getInt("id"), rs.getString("name"));
     }
 }
