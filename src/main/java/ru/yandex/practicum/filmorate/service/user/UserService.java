@@ -55,9 +55,8 @@ public class UserService {
 
     public void addFriendToUser(int userId, int friendId) {
         User user = getUserById(userId);
-        User friend = getUserById(friendId);
-        user.addFriend(friend);
-        storage.addFriendToUser(user, friend);
+        user.addFriend(friendId);
+        storage.addFriendToUser(user, friendId);
     }
 
     public void deleteFriend(int userId, int friendId) {

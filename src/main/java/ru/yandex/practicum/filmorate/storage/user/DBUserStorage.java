@@ -87,12 +87,12 @@ public class DBUserStorage implements UserStorage {
     }
 
     @Override
-    public void addFriendToUser(User user, User friend) {
+    public void addFriendToUser(User user, int friendId) {
         String sql = "INSERT INTO FRIENDSHIP(USER_ID, FRIEND, ACCEPTED) " +
                 "values (?, ?, ?)";
         jdbcTemplate.update(sql,
                 user.getId(),
-                friend.getId(),
+                friendId,
                 true);
     }
 
@@ -140,9 +140,9 @@ public class DBUserStorage implements UserStorage {
             } else {
                 currentUser = usersMap.get(userId);
             }
-            if (rs.getInt("FRIEND_ID") != 0) {
-                User friend = makeFriend(rs);
-                friend.addFriend(friend);
+            int friendId = rs.getInt("FRIEND_ID");
+            if (friendId != 0) {
+                currentUser.addFriend(friendId);
             }
             usersMap.put(userId, currentUser);
         }

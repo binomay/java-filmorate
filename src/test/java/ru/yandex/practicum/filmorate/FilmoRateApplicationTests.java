@@ -90,7 +90,7 @@ class FilmoRateApplicationTests {
     public void shouldAddFriendAndGetFriendListReturn() {
         User user1 = createFirstUser();
         User user2 = createSecondUser();
-        userStorage.addFriendToUser(user1, user2);
+        userStorage.addFriendToUser(user1, user2.getId());
         List<User> userList = userStorage.getFriendsList(user1);
         Assertions.assertTrue(userList.size() == 1);
         Assertions.assertEquals("seconduser", userList.get(0).getName(), "Неверный друг!");
@@ -100,7 +100,7 @@ class FilmoRateApplicationTests {
     public void shoulFriendDelete() {
         User user1 = createFirstUser();
         User user2 = createSecondUser();
-        userStorage.addFriendToUser(user1, user2);
+        userStorage.addFriendToUser(user1, user2.getId());
         userStorage.deleteFriendFromUser(user1, user2);
         List<User> userList = userStorage.getFriendsList(user1);
         Assertions.assertTrue(userList.size() == 0, "Нет друзей у юзера 1");

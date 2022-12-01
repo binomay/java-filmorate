@@ -23,8 +23,8 @@ public class User {
 
     private final Set<Integer> friendsList = new HashSet<>();
 
-    public void addFriend(User friend) {
-        friendsList.add(friend.getId());
+    public void addFriend(int  friendId) {
+        friendsList.add(friendId);
     }
 
     public void deleteFriend(User friend) {

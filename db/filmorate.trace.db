@@ -30756,3 +30756,340 @@ java.sql.SQLClientInfoException: Client info name 'ApplicationName' not supporte
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
 	at java.base/java.lang.Thread.run(Thread.java:833)
+2022-12-01 16:42:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL " [*])"
+Syntax error in SQL statement " [*])"; SQL statement:
+ ) [42000-214]
+2022-12-01 16:42:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL " [*])"
+Syntax error in SQL statement " [*])"; SQL statement:
+ ) [42000-214]
+2022-12-01 16:42:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL " [*])"
+Syntax error in SQL statement " [*])"; SQL statement:
+ ) [42000-214]
+2022-12-01 16:58:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL " [*])"
+Syntax error in SQL statement " [*])"; SQL statement:
+ ) [42000-214]
+2022-12-01 16:59:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL " [*])"
+Syntax error in SQL statement " [*])"; SQL statement:
+ ) [42000-214]
+2022-12-01 16:59:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL " [*])"
+Syntax error in SQL statement " [*])"; SQL statement:
+ ) [42000-214]
+2022-12-01 16:59:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL " [*])"
+Syntax error in SQL statement " [*])"; SQL statement:
+ ) [42000-214]
+2022-12-01 17:02:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL " [*])"
+Syntax error in SQL statement " [*])"; SQL statement:
+ ) [42000-214]
+2022-12-01 17:04:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL " [*])"
+Syntax error in SQL statement " [*])"; SQL statement:
+ ) [42000-214]
+2022-12-01 17:04:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL " [*])"
+Syntax error in SQL statement " [*])"; SQL statement:
+ ) [42000-214]
+2022-12-01 17:04:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL " [*])"
+Syntax error in SQL statement " [*])"; SQL statement:
+ ) [42000-214]
+2022-12-01 17:04:31 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL " [*])"
+Syntax error in SQL statement " [*])"; SQL statement:
+ ) [42000-214]
+2022-12-01 17:09:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL " [*])"
+Syntax error in SQL statement " [*])"; SQL statement:
+ ) [42000-214]
+2022-12-01 17:09:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAMEFROM [*]FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1)"
+Syntax error in SQL statement "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAMEFROM [*]FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1)"; SQL statement:
+SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAMEFROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1) [42000-214]
+2022-12-01 17:09:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAMEFROM [*]FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (2)"
+Syntax error in SQL statement "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAMEFROM [*]FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (2)"; SQL statement:
+SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAMEFROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (2) [42000-214]
+2022-12-01 17:09:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAMEFROM [*]FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1, 2)"
+Syntax error in SQL statement "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAMEFROM [*]FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1, 2)"; SQL statement:
+SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAMEFROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1, 2) [42000-214]
+2022-12-01 17:11:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.[*]LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1)"; ожидалось "identifier"
+Syntax error in SQL statement "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.[*]LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1)"; expected "identifier"; SQL statement:
+SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1) [42001-214]
+2022-12-01 17:11:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.[*]LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (2)"; ожидалось "identifier"
+Syntax error in SQL statement "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.[*]LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (2)"; expected "identifier"; SQL statement:
+SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (2) [42001-214]
+2022-12-01 17:11:28 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.[*]LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1, 2)"; ожидалось "identifier"
+Syntax error in SQL statement "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.[*]LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1, 2)"; expected "identifier"; SQL statement:
+SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1, 2) [42001-214]
+2022-12-01 17:13:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F. [*]LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1)"; ожидалось "identifier"
+Syntax error in SQL statement "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F. [*]LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1)"; expected "identifier"; SQL statement:
+SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F. LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1) [42001-214]
+2022-12-01 17:13:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F. [*]LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (2)"; ожидалось "identifier"
+Syntax error in SQL statement "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F. [*]LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (2)"; expected "identifier"; SQL statement:
+SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F. LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (2) [42001-214]
+2022-12-01 17:13:30 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Синтаксическая ошибка в выражении SQL "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F. [*]LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1, 2)"; ожидалось "identifier"
+Syntax error in SQL statement "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F. [*]LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1, 2)"; expected "identifier"; SQL statement:
+SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F. LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1, 2) [42001-214]
+2022-12-01 17:17:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Столбец "FL.ID" не найден
+Column "FL.ID" not found; SQL statement:
+SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.ID = FG.FILM_ID LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1) [42122-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:139)
+	at org.h2.expression.Expression.optimizeCondition(Expression.java:148)
+	at org.h2.table.TableFilter.createIndexConditions(TableFilter.java:635)
+	at org.h2.table.TableFilter.createIndexConditions(TableFilter.java:644)
+	at org.h2.command.query.Select.preparePlan(Select.java:1320)
+	at org.h2.command.query.Select.preparePlan(Select.java:1202)
+	at org.h2.command.query.Query.prepare(Query.java:219)
+	at org.h2.command.Parser.prepareCommand(Parser.java:575)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:92)
+	at com.zaxxer.hikari.pool.ProxyStatement.executeQuery(ProxyStatement.java:110)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.executeQuery(HikariProxyStatement.java)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:452)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:381)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:465)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForRowSet(JdbcTemplate.java:530)
+	at ru.yandex.practicum.filmorate.storage.film.DBFilmStorage.getPopularFilmList(DBFilmStorage.java:196)
+	at ru.yandex.practicum.filmorate.storage.film.DBFilmStorage.getPrioritizedFilmList(DBFilmStorage.java:45)
+	at ru.yandex.practicum.filmorate.service.film.FilmService.getTopFilmsByLikes(FilmService.java:75)
+	at ru.yandex.practicum.filmorate.controller.FilmController.getTopFilmsByLikes(FilmController.java:58)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1070)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+2022-12-01 17:17:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Столбец "FL.ID" не найден
+Column "FL.ID" not found; SQL statement:
+SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.ID = FG.FILM_ID LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (2) [42122-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:139)
+	at org.h2.expression.Expression.optimizeCondition(Expression.java:148)
+	at org.h2.table.TableFilter.createIndexConditions(TableFilter.java:635)
+	at org.h2.table.TableFilter.createIndexConditions(TableFilter.java:644)
+	at org.h2.command.query.Select.preparePlan(Select.java:1320)
+	at org.h2.command.query.Select.preparePlan(Select.java:1202)
+	at org.h2.command.query.Query.prepare(Query.java:219)
+	at org.h2.command.Parser.prepareCommand(Parser.java:575)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:92)
+	at com.zaxxer.hikari.pool.ProxyStatement.executeQuery(ProxyStatement.java:110)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.executeQuery(HikariProxyStatement.java)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:452)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:381)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:465)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForRowSet(JdbcTemplate.java:530)
+	at ru.yandex.practicum.filmorate.storage.film.DBFilmStorage.getPopularFilmList(DBFilmStorage.java:196)
+	at ru.yandex.practicum.filmorate.storage.film.DBFilmStorage.getPrioritizedFilmList(DBFilmStorage.java:45)
+	at ru.yandex.practicum.filmorate.service.film.FilmService.getTopFilmsByLikes(FilmService.java:75)
+	at ru.yandex.practicum.filmorate.controller.FilmController.getTopFilmsByLikes(FilmController.java:58)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1070)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+2022-12-01 17:17:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Столбец "FL.ID" не найден
+Column "FL.ID" not found; SQL statement:
+SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME FROM FILMS F LEFT JOIN FILMLIKES FL ON FL.ID = FL.FILM_ID LEFT JOIN FILMSGENRE FG ON F.ID = FG.FILM_ID LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (1, 2) [42122-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:139)
+	at org.h2.expression.Expression.optimizeCondition(Expression.java:148)
+	at org.h2.table.TableFilter.createIndexConditions(TableFilter.java:635)
+	at org.h2.table.TableFilter.createIndexConditions(TableFilter.java:644)
+	at org.h2.command.query.Select.preparePlan(Select.java:1320)
+	at org.h2.command.query.Select.preparePlan(Select.java:1202)
+	at org.h2.command.query.Query.prepare(Query.java:219)
+	at org.h2.command.Parser.prepareCommand(Parser.java:575)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcStatement.executeQuery(JdbcStatement.java:92)
+	at com.zaxxer.hikari.pool.ProxyStatement.executeQuery(ProxyStatement.java:110)
+	at com.zaxxer.hikari.pool.HikariProxyStatement.executeQuery(HikariProxyStatement.java)
+	at org.springframework.jdbc.core.JdbcTemplate$1QueryStatementCallback.doInStatement(JdbcTemplate.java:452)
+	at org.springframework.jdbc.core.JdbcTemplate.execute(JdbcTemplate.java:381)
+	at org.springframework.jdbc.core.JdbcTemplate.query(JdbcTemplate.java:465)
+	at org.springframework.jdbc.core.JdbcTemplate.queryForRowSet(JdbcTemplate.java:530)
+	at ru.yandex.practicum.filmorate.storage.film.DBFilmStorage.getPopularFilmList(DBFilmStorage.java:196)
+	at ru.yandex.practicum.filmorate.storage.film.DBFilmStorage.getPrioritizedFilmList(DBFilmStorage.java:45)
+	at ru.yandex.practicum.filmorate.service.film.FilmService.getTopFilmsByLikes(FilmService.java:75)
+	at ru.yandex.practicum.filmorate.controller.FilmController.getTopFilmsByLikes(FilmController.java:58)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:895)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1070)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:963)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:898)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:764)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:117)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:197)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:135)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:360)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:890)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1789)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:829)

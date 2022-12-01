@@ -14,7 +14,6 @@ import ru.yandex.practicum.filmorate.numerators.FilmNumerator;
 import ru.yandex.practicum.filmorate.storage.genre.GenreStorage;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
@@ -40,22 +39,10 @@ public class DBFilmStorage implements FilmStorage {
 
     @Override
     public List<Film> getPrioritizedFilmList(int maxCountFilms) {
-        String sql = "SELECT F.ID, F.NAME NAME, F.DESCRIPTION, F.RELEASEDATE RELEASEDATE, "
-                + "F. DURATION DURATION, R.ID MPA_ID, R.NAME MPA_NAME "
+        String sql = "SELECT F.*,  R.ID MPA_ID, R.NAME MPA_NAME "
                 + "FROM FILMS F LEFT JOIN RATING R ON F.RATING = R.ID "
                 + "ORDER BY F.RATE  DESC LIMIT " + maxCountFilms;
-
-        /*
-        Дилемма: либо тащим только фильмы и ограничиваем выборку в запросе (limit MaxCountFilm),
-        но тогда грузим базу доп. запросами: т.н. "проблема N+1"
-        либо сразу тащим в одном запросе все (фильмы, жанры, лайки (исключаем N+1), но тогда не сможем
-        ограничить количество фильмов в выборке (там фильмы будут "задваиваться" из-за left join к лайкам и т.д.
-        , т.е. придется ограничивать выборку уже на клиенте..
-        Решил так: строк в общей выборке с учетом лайков и жанров будет очень много... не есть хорошо ограничивать на клиенте.
-        Лучше ограничить количество строк в выборке средствами СУБД сразу, а уже на клиенте допом запрашивать лайки и т.п.
-            Доп. запросов будет немного.... Т.е. проблему N+1 с учетом ограниченности выборки оставляю...
-         */
-        return jdbcTemplate.query(sql, (rs, rowNum) -> makeFilmForPopularList(rs));
+        return getPopularFilmList(jdbcTemplate.queryForRowSet(sql));
     }
 
     @Override
@@ -192,7 +179,36 @@ public class DBFilmStorage implements FilmStorage {
         jdbcTemplate.update(sql, film.getId());
     }
 
-    private Film makeFilmForPopularList(ResultSet rs) throws SQLException {
+    //TODO: СДЕЛАТЬ
+    private List<Film> getPopularFilmList(SqlRowSet rs) {
+        Map<Integer, Film> filmsMap = new HashMap<>();
+        String sql = "SELECT F.ID FILM_ID, FL.USER_ID, G.ID GENRE_ID, G.NAME GENRE_NAME " +
+                "FROM FILMS F " +
+                "LEFT JOIN FILMLIKES FL ON F.ID = FL.FILM_ID " +
+                "LEFT JOIN FILMSGENRE FG ON F.ID = FG.FILM_ID " +
+                "LEFT JOIN GENRE G ON FG.GENRE_ID = G.ID WHERE F.ID IN (";
+        while (rs.next()) {
+            Film film = makeFilmForPopularList(rs);
+            filmsMap.put(film.getId(), film);
+            sql = sql + film.getId() + ", ";
+        }
+        sql = sql.substring(0, sql.length() - 2) + ")";
+        SqlRowSet rs1 = jdbcTemplate.queryForRowSet(sql);
+        while (rs1.next()) {
+            int filmId = rs1.getInt("FILM_ID");
+            int userId = rs1.getInt("USER_ID");
+            if (userId != 0) {
+                filmsMap.get(filmId).addLike(userId);
+            }
+            int genreId = rs1.getInt("GENRE_ID");
+            if (genreId != 0) {
+                filmsMap.get(filmId).addGenre(new Genre(genreId, rs1.getString("GENRE_NAME")));
+            }
+        }
+        return new ArrayList<>(filmsMap.values());
+    }
+
+    private Film makeFilmForPopularList(SqlRowSet rs) {
         Film film = new Film();
         film.setId(rs.getInt("id"));
         film.setName(rs.getString("name"));
@@ -200,27 +216,11 @@ public class DBFilmStorage implements FilmStorage {
         film.setReleaseDate(rs.getDate("releasedate").toLocalDate());
         film.setDuration(rs.getInt("duration"));
         film.setMpa(new Rating(rs.getInt("MPA_ID"), rs.getString("MPA_NAME")));
-        setAllGenresToFilm(film);
-        setAllLikesToFilm(film);
         return film;
-    }
-
-    private void setAllGenresToFilm(Film film) {
-        for (Genre genre : genreStorage.getGenreListForFilm(film)) {
-            film.addGenre(genre);
-        }
-    }
-
-    private void setAllLikesToFilm(Film film) {
-        List<Integer> likeIdList = getLikeList(film);
-        for (Integer userId : likeIdList) {
-            film.addLike(userId);
-        }
     }
 
     private List<Integer> getLikeList(Film film) {
         String sql = "SELECT USER_ID FROM FILMLIKES WHERE FILM_ID = " + film.getId();
         return jdbcTemplate.query(sql, (rs, rowNum) -> rs.getInt("USER_ID"));
     }
-
 }

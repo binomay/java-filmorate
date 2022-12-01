@@ -6,7 +6,6 @@ import ru.yandex.practicum.filmorate.exception.ResourceNotFoundException;
 import ru.yandex.practicum.filmorate.model.Rating;
 import ru.yandex.practicum.filmorate.storage.rating.RatingStorage;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Slf4j
@@ -28,7 +27,7 @@ public class RatingService {
                 });
     }
 
-    public List<Rating> getAllRatings() throws SQLException {
+    public List<Rating> getAllRatings() {
         return storage.getAllRatings();
     }
 

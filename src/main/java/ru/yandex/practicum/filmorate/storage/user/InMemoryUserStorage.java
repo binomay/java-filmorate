@@ -41,17 +41,13 @@ public class InMemoryUserStorage implements UserStorage {
     }
 
     @Override
-    public void addFriendToUser(User user, User friend) {
+    public void addFriendToUser(User user, int friendId) {
         User newUser = updateUser(user);
-        //начиная с 11 спринта дружба одностороннаяя
-        //User newFriend = updateUser(friend);
     }
 
     @Override
     public void deleteFriendFromUser(User user, User friend) {
         User newUser = updateUser(user);
-        //начиная с 11 спринта дружба одностороннаяя
-        //User newFriend = updateUser(friend);
     }
 
     @Override

@@ -6,7 +6,6 @@ import ru.yandex.practicum.filmorate.exception.ResourceNotFoundException;
 import ru.yandex.practicum.filmorate.model.Genre;
 import ru.yandex.practicum.filmorate.storage.genre.GenreStorage;
 
-import java.sql.SQLException;
 import java.util.List;
 
 @Slf4j
@@ -28,7 +27,7 @@ public class GenreService {
                 });
     }
 
-    public List<Genre> getAllGenres() throws SQLException {
+    public List<Genre> getAllGenres() {
         return storage.getAllGenres();
     }
 }
