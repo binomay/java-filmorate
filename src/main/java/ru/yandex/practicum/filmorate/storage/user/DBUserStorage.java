@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 import org.springframework.stereotype.Component;
+import ru.yandex.practicum.filmorate.exception.ResourceNotFoundException;
 import ru.yandex.practicum.filmorate.model.User;
 import ru.yandex.practicum.filmorate.numerators.UserNumerator;
 
@@ -88,12 +89,16 @@ public class DBUserStorage implements UserStorage {
 
     @Override
     public void addFriendToUser(User user, int friendId) {
-        String sql = "INSERT INTO FRIENDSHIP(USER_ID, FRIEND, ACCEPTED) " +
-                "values (?, ?, ?)";
-        jdbcTemplate.update(sql,
-                user.getId(),
-                friendId,
-                true);
+        try {
+            String sql = "INSERT INTO FRIENDSHIP(USER_ID, FRIEND, ACCEPTED) " +
+                    "values (?, ?, ?)";
+            jdbcTemplate.update(sql,
+                    user.getId(),
+                    friendId,
+                    true);
+        } catch (Exception e) {
+            throw new ResourceNotFoundException("Не найден пользователь с Id: " + friendId);
+        }
     }
 
     @Override
