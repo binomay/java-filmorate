@@ -97,7 +97,7 @@ public class DBUserStorage implements UserStorage {
                     friendId,
                     true);
         } catch (Exception e) {
-            throw new ResourceNotFoundException("Не найден пользователь с Id: " + friendId);
+            throw new ResourceNotFoundException(e.getMessage());
         }
     }
 
